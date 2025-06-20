@@ -10,6 +10,9 @@
     <!-- Vite CSS & JS - This is how Laravel processes your Tailwind CSS and JavaScript -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('icon.png') }}">
+
     <style>
         /* Custom font family applied globally */
         body {

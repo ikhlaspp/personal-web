@@ -10,21 +10,9 @@
             <p class="text-xl text-gray-300 leading-relaxed">Tertarik bekerja sama, punya project, atau sekadar ingin berdiskusi? Silakan hubungi saya melalui form di bawah atau kontak langsung!</p>
         </div>
 
-        <!-- Contact Info Section -->
-        <div class="bg-zinc-900 rounded-2xl p-8 md:p-12 border border-zinc-800/50 mb-10">
-            <div class="flex flex-col md:flex-row md:items-center gap-8">
-                <div class="flex-1">
-                    <div class="mb-2 text-gray-400"><span class="font-semibold text-white">Email:</span> <a href="mailto:ikhlasputra940@gmail.com" class="underline hover:text-blue-400">ikhlasputra940@gmail.com</a></div>
-                    <div class="mb-2 text-gray-400"><span class="font-semibold text-white">HP/WA:</span> <a href="https://wa.me/62882009612703" class="underline hover:text-blue-400">0882009612703</a></div>
-                    <div class="mb-2 text-gray-400"><span class="font-semibold text-white">Github:</span> <a href="https://github.com/ikhlaspp" class="underline hover:text-blue-400" target="_blank">github.com/ikhlaspp</a></div>
-                    <div class="mb-2 text-gray-400"><span class="font-semibold text-white">Domisili:</span> Sidoarjo, Jawa Timur</div>
-                </div>
-            </div>
-        </div>
-
         <!-- Contact Form Section -->
         <div class="bg-gradient-to-b from-zinc-900 to-zinc-900/50 rounded-3xl p-8 md:p-12 border border-zinc-800/50 backdrop-blur-xl transform hover:border-zinc-700/50 transition-all duration-500 shadow-2xl hover:shadow-blue-500/5">
-            <form action="#" method="POST" class="space-y-8">
+            <form action="{{ route('contact.submit') }}" method="POST" class="space-y-8">
                 @csrf
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="relative group">
@@ -60,5 +48,10 @@
                 </div>
             </form>
         </div>
+        @if (session('success'))
+    <div class="bg-green-700 text-white rounded-xl px-4 py-3 mb-6 text-center font-semibold">
+        {{ session('success') }}
+    </div>
+@endif
     </section>
 @endsection

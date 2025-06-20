@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\WebProject;
 use App\Models\Design;
 use App\Models\EditedVideo;
+use Illuminate\Support\Facades\Mail;
 
 class PortfolioController extends Controller
 {
@@ -85,5 +86,33 @@ class PortfolioController extends Controller
             'selectedCategoryDesign' => $selectedCategoryDesign,
             'selectedCategoryVideo' => $selectedCategoryVideo,
         ]);
+    }
+
+    /**
+     * Handle contact form submission.
+     */
+    public function contactSubmit(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Send email to your Gmail
+        Mail::raw(
+            "Pesan baru dari website personal:\n\n" .
+            "Nama: {$validated['name']}\n" .
+            "Email: {$validated['email']}\n" .
+            "Subjek: {$validated['subject']}\n" .
+            "Pesan: {$validated['message']}\n",
+            function ($message) use ($validated) {
+                $message->to(config('mail.from.address'))
+                        ->subject('[Personal Web] Kontak: ' . $validated['subject']);
+            }
+        );
+
+        return redirect()->back()->with('success', 'Pesan Anda telah dikirim!');
     }
 }

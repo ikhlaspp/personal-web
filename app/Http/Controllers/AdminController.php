@@ -11,26 +11,43 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $statsData = [
-            'totalVisits' => '11.8M',
-            'visitsGrowth' => '+2.5%',
-            'newProjects' => '8.236K',
-            'projectsGrowth' => '-1.2%',
-            'activeProjects' => '2.352M',
-            'activeGrowth' => '+11%',
-            'completedProjects' => '8K',
-            'completedGrowth' => '+5.2%',
+        $webProjectsCount = \App\Models\WebProject::count();
+        $designsCount = \App\Models\Design::count();
+        $videosCount = \App\Models\EditedVideo::count();
+
+        // Example: Calculate completion percent (customize as needed)
+        $totalProjects = $webProjectsCount + $designsCount + $videosCount;
+        $completedProjects = $webProjectsCount; // Example: treat web projects as completed
+        $completionPercent = $totalProjects > 0 ? round(($completedProjects / $totalProjects) * 100) : 0;
+
+        // Example: Project status (customize as needed)
+        $activePercent = 45;
+        $pendingPercent = 35;
+        $completedPercent = 20;
+
+        // Example: Active countries (customize as needed)
+        $activeCountries = [
+            'United States' => 27.5,
+            'Australia' => 11.2,
+            'China' => 9.4,
+        ];
+        $topCountries = [
+            ['flag' => '🇺🇸', 'name' => 'United States', 'percent' => 27.5, 'users' => '4.5M'],
+            ['flag' => '🇦🇺', 'name' => 'Australia', 'percent' => 11.2, 'users' => '2.3M'],
+            ['flag' => '🇨🇳', 'name' => 'China', 'percent' => 9.4, 'users' => '2M'],
         ];
 
-        $countriesData = [
-            ['name' => 'United States', 'flag' => '🇺🇸', 'percentage' => '27.5', 'users' => '4.5M'],
-            ['name' => 'Australia', 'flag' => '🇦🇺', 'percentage' => '11.2', 'users' => '2.3M'],
-            ['name' => 'China', 'flag' => '🇨🇳', 'percentage' => '9.4', 'users' => '2M'],
-            ['name' => 'Germany', 'flag' => '🇩🇪', 'percentage' => '8', 'users' => '1.7M'],
-            ['name' => 'Romania', 'flag' => '🇷🇴', 'percentage' => '7.9', 'users' => '1.6M'],
-        ];
-
-        return view('admin.dashboard', compact('statsData', 'countriesData'));
+        return view('admin.dashboard', compact(
+            'webProjectsCount',
+            'designsCount',
+            'videosCount',
+            'completionPercent',
+            'activePercent',
+            'pendingPercent',
+            'completedPercent',
+            'activeCountries',
+            'topCountries',
+        ));
     }
 
     public function webProjects()
