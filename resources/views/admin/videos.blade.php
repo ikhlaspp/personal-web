@@ -102,8 +102,7 @@
 
         <!-- Delete Modal -->
         <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 hidden">
-            <div class="bg-white dark:bg-zinc-800 rounded-xl shadow-xl p-8 w-full max-w-md">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Delete Confirmation</h3>
+            <div class="bg-white dark:bg-zinc-800 rounded-xl shadow-xl p-8 w-full max-w-md">                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Delete Confirmation</h3>
                 <p class="text-gray-600 dark:text-gray-300 mb-6">Are you sure you want to delete this video? This action cannot be undone.</p>
                 <form id="deleteForm" method="POST">
                     @csrf

@@ -82,7 +82,7 @@ class AdminController extends Controller
             'category' => 'nullable|string',
             'url' => 'nullable|string',
             'technologies' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:5120', // 5MB
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('web-projects', 'public');
@@ -109,7 +109,7 @@ class AdminController extends Controller
             'category' => 'nullable|string',
             'url' => 'nullable|string',
             'technologies' => 'nullable|string',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:5120', // 5MB
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('web-projects', 'public');
@@ -140,7 +140,7 @@ class AdminController extends Controller
             'title' => 'required',
             'description' => 'required',
             'category' => 'required',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:5120', // 5MB
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('designs', 'public');
@@ -161,7 +161,7 @@ class AdminController extends Controller
             'title' => 'required',
             'description' => 'required',
             'category' => 'required',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'nullable|image|max:5120', // 5MB
         ]);
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('designs', 'public');
@@ -191,7 +191,7 @@ class AdminController extends Controller
             'video_url' => 'nullable|string',
             'software_used' => 'nullable|string',
             'duration_seconds' => 'nullable|integer',
-            'thumbnail' => 'nullable|image|max:2048',
+            'thumbnail' => 'nullable|image|max:5120', // 5MB
         ]);
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('videos', 'public');
@@ -215,7 +215,7 @@ class AdminController extends Controller
             'video_url' => 'nullable|string',
             'software_used' => 'nullable|string',
             'duration_seconds' => 'nullable|integer',
-            'thumbnail' => 'nullable|image|max:2048',
+            'thumbnail' => 'nullable|image|max:5120', // 5MB
         ]);
         if ($request->hasFile('thumbnail')) {
             $path = $request->file('thumbnail')->store('videos', 'public');

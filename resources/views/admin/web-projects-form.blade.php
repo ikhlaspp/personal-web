@@ -26,7 +26,7 @@
         </div>
         <div>
             <label class="block text-gray-300 mb-1">Technologies (comma separated)</label>
-            <input type="text" name="technologies" value="{{ old('technologies', isset($project) && $project->technologies ? implode(', ', json_decode($project->technologies, true)) : '') }}" class="w-full rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-white px-4 py-3">
+            <input type="text" name="technologies" value="{{ old('technologies', isset($project) && $project->technologies ? (is_array($project->technologies) ? implode(', ', $project->technologies) : (is_string($project->technologies) ? implode(', ', json_decode($project->technologies, true)) : '')) : '') }}" class="w-full rounded-xl bg-zinc-800/50 border border-zinc-700/50 text-white px-4 py-3">
         </div>
         <div>
             <label class="block text-gray-300 mb-1">Image</label>

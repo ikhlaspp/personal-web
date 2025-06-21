@@ -33,7 +33,10 @@ class PortfolioController extends Controller
         }
         $webProjects = $webProjectsQuery->latest()->paginate(8, ['*'], 'web_page');
         foreach ($webProjects as $project) {
-            $project->technologies = $project->technologies ? json_decode($project->technologies, true) : [];
+            if (is_string($project->technologies)) {
+                $project->technologies = json_decode($project->technologies, true);
+            }
+            // If already array, leave as is
         }
 
         // --- Designs Query ---
